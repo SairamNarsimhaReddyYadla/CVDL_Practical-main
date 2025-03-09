@@ -1,0 +1,72 @@
+# Hydra parameters, can be passed via commandline when running main.py
+
+# General
+image_size: 64 
+num_channels: 1     
+
+# Model 
+model: hybrid    # cnn, vit, fcn or hybrid
+pretrain: False 
+dataset_mode : all #can be either all, ck_plus or affectnet 
+load_model: false
+
+# ViT specifics
+patch_size: 4
+depth: 1
+embed_dim: 64
+num_heads: 1
+
+# Training 
+num_classes: 6
+batch_size: 128
+cuda: True 
+device: cuda
+num_workers: 16
+epochs: 100
+lr: .0001
+
+# FCN specifics
+fcn_feature_dim: 256
+combine_alpha: 0.8
+combine_beta: 0.3
+
+# augmentations specifics
+augments: True 
+probability: 0.5
+min_area: 0.02
+max_area: 0.10
+min_aspect_ratio: 0.3
+max_aspect_ratio: 3.0
+rotation_angle: 25
+brightness: [0.5, 1.5]
+contrast : [0.2, 2.0]
+
+#CSV Image Processing
+mode: train #can be train, realtime_detection or process_csv, by default train
+image_folder: 'RealTimeDemoAndImageCSV/TestImagesFolder'
+output_csv: emotion_predictions.csv
+custom_model_path: ""
+
+
+#Video Processing
+input_video_path: ""
+output_video_path: "output.mp4"
+
+
+# visualization
+blur_size: 7
+
+#Torch Resnet
+torch_resnet:
+  model_type: resnet50 #resnet18, resnet34, resnet50, resnet101, resnet152
+  pretrained: False
+  input_channels: 1
+  num_classes: 6
+
+#Resnet
+resnet:
+  num_classes: 6
+  input_channels: 1
+
+channel_multiplier: 1
+hybrid_encoder: standard #standard, vgg
